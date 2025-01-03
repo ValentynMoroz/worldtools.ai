@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/worldtools.ai/static/css/main.067c9b39.css",
+    "main.js": "/worldtools.ai/static/js/main.580596ae.js",
+    "index.html": "/worldtools.ai/index.html",
+    "main.067c9b39.css.map": "/worldtools.ai/static/css/main.067c9b39.css.map",
+    "main.580596ae.js.map": "/worldtools.ai/static/js/main.580596ae.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.067c9b39.css",
+    "static/js/main.580596ae.js"
+  ]
+}
