@@ -6,6 +6,7 @@ const ScrollToHash = ({ offset = 0 }) => {
 
   useEffect(() => {
     const scrollToElement = () => {
+      console.log('object');
       if (location.hash) {
         const targetElement = document.querySelector(location.hash);
         if (targetElement) {
