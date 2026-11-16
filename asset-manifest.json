@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/worldtools.ai/static/css/main.74438510.css",
-    "main.js": "/worldtools.ai/static/js/main.0cfce2d0.js",
+    "main.css": "/worldtools.ai/static/css/main.fc3ffceb.css",
+    "main.js": "/worldtools.ai/static/js/main.6377fae2.js",
     "index.html": "/worldtools.ai/index.html",
-    "main.74438510.css.map": "/worldtools.ai/static/css/main.74438510.css.map",
-    "main.0cfce2d0.js.map": "/worldtools.ai/static/js/main.0cfce2d0.js.map"
+    "main.fc3ffceb.css.map": "/worldtools.ai/static/css/main.fc3ffceb.css.map",
+    "main.6377fae2.js.map": "/worldtools.ai/static/js/main.6377fae2.js.map"
   },
   "entrypoints": [
-    "static/css/main.74438510.css",
-    "static/js/main.0cfce2d0.js"
+    "static/css/main.fc3ffceb.css",
+    "static/js/main.6377fae2.js"
   ]
 }
