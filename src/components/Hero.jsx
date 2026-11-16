@@ -1,6 +1,21 @@
-const Hero = ({ click, handleSearch, handleClickReset }) => {
+import { useRef } from 'react';
+
+const Hero = ({
+  click,
+  handleSearch,
+  activeCategory,
+  handleClickReset,
+  clickReset,
+}) => {
+  const formRef = useRef(null);
+
+  const handleReset = () => {
+    formRef.current?.reset();
+    clickReset();
+  };
+
   return (
-    <section className="pt-[228px] md:pt-[325px]  overflow-hidden ">
+    <section className="pt-[128px] md:pt-[125px]  overflow-hidden ">
       <div
         className="  absolute top-0 xl:top-[-85px] left-0 w-[270px] md:w-[370px] lg:w-[500px] xl:w-[750px]  2xl:w-[950px] h-[500px]    xl:h-[650px] z-[-1]"
         style={{
@@ -25,6 +40,7 @@ const Hero = ({ click, handleSearch, handleClickReset }) => {
           simplify your work
         </p>
         <form
+          ref={formRef}
           onSubmit={e => handleSearch(e)}
           className="w-full xl:w-[75%] 2xl:w-[55%] pt-6 flex gap-2 relative "
         >
@@ -49,34 +65,49 @@ const Hero = ({ click, handleSearch, handleClickReset }) => {
           <button className="bg-white text-black rounded-xl py-3 px-4 font-medium hover:bg-[#CECECE]">
             Search
           </button>
+          <button
+            type="button"
+            onClick={handleReset}
+            className="text-whiteTransparent hover:text-white transition-colors"
+          >
+            Reset
+          </button>
         </form>
-        <ul
-          className="flex  flex-wrap pt-2 text-whiteTransparent text-[16px] gap-2 lg:gap-5 items-center"
-          onClick={e => {
-            click(e);
-          }}
-        >
-          <li className="px-3 py-[6px] border rounded-xl border-inputTransparent hover:bg-modalBorder hover:border-border">
-            Productivity
+        <ul className="flex flex-wrap pt-2 text-whiteTransparent text-[16px] gap-2 lg:gap-5 items-center">
+          <li
+            onClick={handleClickReset}
+            className={`px-3 py-[6px] border rounded-xl cursor-pointer ${
+              !activeCategory
+                ? 'bg-modalBorder border-white text-white'
+                : 'border-inputTransparent hover:bg-modalBorder hover:border-border'
+            }`}
+          >
+            All
           </li>
-          <li className="px-3 py-[6px] border rounded-xl border-inputTransparent hover:bg-modalBorder hover:border-border">
-            Tech
-          </li>
-          <li className="px-3 py-[6px] border rounded-xl border-inputTransparent hover:bg-modalBorder hover:border-border">
-            Finance
-          </li>
-          <li className="px-3 py-[6px] border rounded-xl border-inputTransparent hover:bg-modalBorder hover:border-border">
-            Education
-          </li>
-          <li className="px-3 py-[6px] border rounded-xl border-inputTransparent hover:bg-modalBorder hover:border-border">
-            Analytics
-          </li>
-          <li className="px-3 py-[6px] border rounded-xl border-inputTransparent hover:bg-modalBorder hover:border-border">
-            Marketing
-          </li>
+
+          {[
+            'Productivity',
+            'Tech',
+            'Finance',
+            'Education',
+            'Analytics',
+            'Marketing',
+          ].map(category => (
+            <li
+              key={category}
+              onClick={() => click(category)}
+              className={`px-3 py-[6px] border rounded-xl cursor-pointer ${
+                activeCategory === category
+                  ? 'bg-modalBorder border-white text-white'
+                  : 'border-inputTransparent hover:bg-modalBorder hover:border-border'
+              }`}
+            >
+              {category}
+            </li>
+          ))}
         </ul>
       </div>
-      <div className="relative w-[100vw] overflow-hidden   h-[228px] md:h-[325px]">
+      <div className="relative w-[100vw] overflow-hidden   h-[128px] md:h-[225px]">
         <div
           className=" absolute bottom-0 xl:bottom-[-150px] 2xl:bottom-[-200px] left-0 w-[60px] md:w-[80px] xl:w-[250px]  h-[80px] md:h-[100px] xl:h-[300px]  z-[-1]  "
           style={{

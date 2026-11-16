@@ -16,6 +16,7 @@ import {
 } from 'arrsAI/arrsAi';
 
 const AIList = ({ value, searchValue }) => {
+  console.log('Active category:', value);
   const [productivity, setProductivity] = useState(newArrAI);
   const [tech, setTech] = useState(techAI);
   const [finance, setFinance] = useState(financeAi);

@@ -5,13 +5,35 @@ import { login } from 'api/login';
 import { setBearerToken } from 'components/Header';
 import { validationLoginSchema } from 'shemas/shemas';
 import toast from 'react-hot-toast';
+import DemoModal from './DemoModal';
 
 const SignIn = ({ setToken, openModal, closeModal, setUserData }) => {
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [errors, setErrors] = useState({});
   const [formValues, setFormValues] = useState({
     email: '',
     password: '',
   });
+
+  const loginAsDemo = () => {
+    const demoToken = 'demo-access-token';
+
+    const demoUser = {
+      firstName: 'Demo',
+      lastName: 'User',
+      email: 'demo@example.com',
+    };
+
+    localStorage.setItem('token', demoToken);
+
+    setToken(demoToken);
+    setBearerToken(demoToken);
+    setUserData(demoUser);
+
+    closeModal();
+
+    toast.success('Welcome to Demo Version!');
+  };
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -99,6 +121,13 @@ const SignIn = ({ setToken, openModal, closeModal, setUserData }) => {
         <p className="text-[16px] text-pricingText text-center mt-2">
           Enter your personal data to login your account.
         </p>
+        <button
+          type="button"
+          onClick={() => setIsDemoModalOpen(true)}
+          className="w-full py-3 mt-4 rounded-xl bg-white text-black font-medium hover:bg-[#CECECE] transition-all"
+        >
+          Explore Demo
+        </button>
         <button className="cursor-pointer w-full py-3 border  bg-input rounded-xl border-cardsTransparent mt-4 flex items-center gap-2 justify-center hover:bg-modalBorder transition-all duration-300 ease-linear">
           <svg
             width={20}
@@ -158,6 +187,12 @@ const SignIn = ({ setToken, openModal, closeModal, setUserData }) => {
           </div>
         </form>
       </div>
+      {isDemoModalOpen && (
+        <DemoModal
+          onConfirm={loginAsDemo}
+          onClose={() => setIsDemoModalOpen(false)}
+        />
+      )}
     </div>
   );
 };

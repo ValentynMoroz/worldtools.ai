@@ -45,9 +45,14 @@ const Header = () => {
       return;
     }
     try {
-      const data = await currentUser();
-      setUserData({ ...data });
-      console.log(data);
+      // const data = await currentUser();
+      setUserData({
+        // ...data,
+        lastName: 'demo',
+        firstName: 'user',
+        email: 'demo@example.com',
+      });
+      // console.log(data);
     } catch (error) {
       console.log('Error fetching user data:', error);
     }
