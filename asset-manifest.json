@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ValentynMoroz/worldtools.ai.git/static/css/main.74438510.css",
-    "main.js": "/ValentynMoroz/worldtools.ai.git/static/js/main.055d29f7.js",
-    "index.html": "/ValentynMoroz/worldtools.ai.git/index.html",
-    "main.74438510.css.map": "/ValentynMoroz/worldtools.ai.git/static/css/main.74438510.css.map",
-    "main.055d29f7.js.map": "/ValentynMoroz/worldtools.ai.git/static/js/main.055d29f7.js.map"
+    "main.css": "/worldtools.ai/static/css/main.74438510.css",
+    "main.js": "/worldtools.ai/static/js/main.0cfce2d0.js",
+    "index.html": "/worldtools.ai/index.html",
+    "main.74438510.css.map": "/worldtools.ai/static/css/main.74438510.css.map",
+    "main.0cfce2d0.js.map": "/worldtools.ai/static/js/main.0cfce2d0.js.map"
   },
   "entrypoints": [
     "static/css/main.74438510.css",
-    "static/js/main.055d29f7.js"
+    "static/js/main.0cfce2d0.js"
   ]
 }
