@@ -10,7 +10,7 @@ import { logout } from 'api/logout';
 import { eventEmitter2 } from 'helpers/eventEmitter';
 import toast from 'react-hot-toast';
 import CategoriesModal from './modals/CategoriesModal';
-import { currentUser } from 'api/currentUser';
+// import { currentUser } from 'api/currentUser';
 export const setBearerToken = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   console.log('Bearer Token Set:', axios.defaults.headers.common.Authorization);
