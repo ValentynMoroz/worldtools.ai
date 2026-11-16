@@ -2,7 +2,7 @@
   "name": "react-homework-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/ValentynMoroz/worldtools.ai.git",
+  "homepage": "https://valentynmoroz.github.io/worldtools.ai",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
