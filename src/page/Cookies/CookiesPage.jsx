@@ -12,7 +12,7 @@ const Cookies = () => {
         </h3>
         <p className="text-[16px] mt-8">Date of Revision: [ 02/10/2024 ]</p>
         <p className="text-[16px] mt-8">
-          This Cookies Policy is designed to help visitors and users understand
+          This Cokies Policy is designed to help visitors and users understand
           how and why we use cookies on our website worldtools.ai (the
           “Website”). “We” and “Us” in this document refers to Ineffaceable
           Enterprises, a company registered under the laws of the Delaware,
