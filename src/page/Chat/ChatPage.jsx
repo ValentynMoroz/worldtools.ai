@@ -1,4 +1,5 @@
-import { currentUser } from 'api/currentUser';
+// import { currentUser } from 'api/currentUser';
+import toast from 'react-hot-toast';
 import ProfileModal from 'components/modals/ProfileModal';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -16,15 +17,15 @@ const ChatPage = () => {
   const token = localStorage.getItem('token');
   useEffect(() => {
     async function fetchData() {
-      const userData = await currentUser();
-      console.log(userData);
+      // const userData = await currentUser();
+      // console.log(userData);
       setData({
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        email: userData.email,
-        subscription: userData.subscription,
+        firstName: 'Demo',
+        lastName: 'User',
+        email: 'demoemail',
+        subscription: 'none',
       });
-      console.log(userData);
+      // console.log(userData);
     }
 
     if (!token) {
@@ -35,13 +36,24 @@ const ChatPage = () => {
   }, [token, navigate]);
 
   const handleClick = () => {
-    console.log('gg');
     setOpenMenu(false);
     setOpen(true);
   };
 
   const handleOpenMobileMenu = () => {
     setOpenMenu(!openMenu);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    toast(
+      'This is a demo version. Chat functionality is currently unavailable.',
+      {
+        duration: 4000,
+        icon: 'ℹ️',
+      }
+    );
   };
 
   return token ? (
@@ -112,12 +124,14 @@ const ChatPage = () => {
                 worldtools.ai{' '}
               </Link>
             </div>
-            <div className="hidden md:flex gap-1 items-center ">
+            <div className="hidden md:flex gap-1 items-center cursor-pointer ">
               <img className="w-4" alt="avt" src="./image/icon-people.png" />
               <p
-                className="overflow-hidden text-ellipsis whitespace-nowrap"
+                className="overflow-hidden text-ellipsis whitespace-nowrap "
                 onClick={handleClick}
-              >{`${data.firstName} ${data.lastName}`}</p>{' '}
+              >
+                Demo User
+              </p>{' '}
               <svg
                 width={20}
                 height={20}
@@ -144,7 +158,11 @@ const ChatPage = () => {
               calculate totals, create charts, or even analyze trends!
             </p>
           </div>
-          <form className="relative align-bottom flex justify-center w-[90%] md:w-[70%] 2xl:w-[664px] ">
+          <form
+            onSubmit={handleSubmit}
+            className="relative align-bottom flex justify-center w-[90%] md:w-[70%] 2xl:w-[664px]"
+          >
+            {' '}
             <input
               placeholder="Message"
               className="  p-4 bg-input rounded-xl border-[2px] border-transparent focus:border-white focus:outline-none font-medium placeholder-inputText text-white h-[56px] w-full "

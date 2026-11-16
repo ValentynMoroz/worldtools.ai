@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import InputModal from './InputModal';
 import { updateData } from 'api/updateData';
 import { validationUpdateSchema } from 'shemas/shemas';
@@ -11,6 +11,27 @@ const ProfileModal = ({ data, isOpen, setOpenProfile, className }) => {
   const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
+
+  const closeModal = useCallback(() => {
+    setOpenProfile(false);
+    document.body.classList.remove('overflow-hidden-body');
+  }, [setOpenProfile]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = e => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, closeModal]);
 
   const handleClick = e => {
     if (e.target.id === '1') {
@@ -84,11 +105,16 @@ const ProfileModal = ({ data, isOpen, setOpenProfile, className }) => {
 
   return (
     <div
-      className={`overflow-auto z-[-1]  top-[62px] inset-0 fixed w-full h-[100vh] bg-black bg-opacity-70 backdrop-blur-md ${
+      onClick={closeModal}
+      className={`fixed inset-0 z-[9999] flex items-center justify-center overflow-y-auto px-4 py-6 bg-black bg-opacity-70 backdrop-blur-md ${
         isOpen ? '' : 'hidden'
       } ${className}`}
     >
-      <div className="overflow-auto max-h-[calc(100vh-150px)] z-10 scrolslbar-none absolute top-1/2  translate-x-[-50%] left-1/2 translate-y-[-50%] w-[90%] sm:w-[358px] md:w-[650px] sm:h-[684px] md:h-[776px] border border-modalBorder bg-cardsTransparent  rounded-xl scrollbar-none">
+      <div
+        onClick={e => e.stopPropagation()}
+        className="relative overflow-auto max-h-full w-[90%] sm:w-[358px] md:w-[650px] sm:h-[684px] md:h-[776px] border border-modalBorder bg-cardsTransparent rounded-xl scrollbar-none"
+      >
+        {' '}
         <ul
           onClick={handleClick}
           className={`relative flex py-3 text-center after:content-[''] after:absolute after:w-1/2 after:h-[1px] after:bg-white after:bottom-0 ${
@@ -182,16 +208,13 @@ const ProfileModal = ({ data, isOpen, setOpenProfile, className }) => {
                 <button
                   type="button"
                   value={'close'}
-                  className="cursor-pointer sm:w-[155px] md:w-[295px] text-cardsText rounded-xl border-[2px] border-cardsTransparent py-3"
+                  className="cursor-pointer sm:w-[155px] md:w-[295px] text-cardsText rounded-xl border-[2px] border-cardsTransparent py-3 transition-all duration-300 ease-out hover:border-white hover:text-white hover:bg-white/5 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                   name="close"
-                  onClick={() => {
-                    setOpenProfile(false);
-                    document.body.classList.remove('overflow-hidden-body');
-                  }}
+                  onClick={closeModal}
                 >
                   Close
                 </button>
-                <button className="cursor-pointer sm:w-[155px] md:w-[295px] rounded-xl bg-gradient-to-b from-[#0099FF] to-[#0066FF]  py-3">
+                <button className="cursor-pointer sm:w-[155px] md:w-[295px] rounded-xl bg-gradient-to-b from-[#0099FF] to-[#0066FF] py-3 transition-all duration-300 ease-out hover:from-[#33ADFF] hover:to-[#3385FF] hover:shadow-lg hover:shadow-blue-500/25 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
                   Save changes
                 </button>
               </div>
@@ -207,28 +230,28 @@ const ProfileModal = ({ data, isOpen, setOpenProfile, className }) => {
                   <p>Subscription to: </p>
                 </div>
               </div>
-              <button className="cursor-pointer mt-6 rounded-xl w-[100%] py-3 text-center bg-gradient-to-b from-[#0099FF] to-[#0066FF]  transition-all duration-500 hover:from-[#4BB7FF] hover:to-[#287EFF]">
+              <button className="cursor-pointer mt-6 rounded-xl w-full py-3 text-center bg-gradient-to-b from-[#0099FF] to-[#0066FF] transition-all duration-300 ease-out hover:from-[#33ADFF] hover:to-[#3385FF] hover:shadow-lg hover:shadow-blue-500/25 hover:scale-[1.01] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
                 Cancel subscription
               </button>
             </div>
             <div>
-              <p className="text-[12px] mt-[325px]">
+              <p className="text-[12px] mt-[205px]">
                 You are on an annual subscription, from 17.05.2025 your plan
                 will renew at the regular price of $140 until cancelled. You can
                 cancel your subscription now and continue to use it until
                 17.07.2025
               </p>
-              <div className="flex justify-between  mt-12 tex-[12px]">
+              <div className="flex justify-between mt-4">
                 <button
-                  className="cursor-pointer w-[295px] text-cardsText rounded-xl border-[2px] border-cardsTransparent py-3"
-                  onClick={() => {
-                    setOpenProfile(false);
-                    document.body.classList.remove('overflow-hidden-body');
-                  }}
+                  type="button"
+                  value={'close'}
+                  className="cursor-pointer sm:w-[155px] md:w-[295px] text-cardsText rounded-xl border-[2px] border-cardsTransparent py-3 transition-all duration-300 ease-out hover:border-white hover:text-white hover:bg-white/5 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                  name="close"
+                  onClick={closeModal}
                 >
                   Close
                 </button>
-                <button className="cursor-pointer w-[295px] rounded-xl bg-[#0066FF] bg-gradient-to-b from-[#0099FF] to-[#0066FF]  transition-all duration-500 hover:from-[#4BB7FF] hover:to-[#287EFF]  py-3">
+                <button className="cursor-pointer sm:w-[155px] md:w-[295px] rounded-xl bg-gradient-to-b from-[#0099FF] to-[#0066FF] py-3 transition-all duration-300 ease-out hover:from-[#33ADFF] hover:to-[#3385FF] hover:shadow-lg hover:shadow-blue-500/25 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
                   Save changes
                 </button>
               </div>

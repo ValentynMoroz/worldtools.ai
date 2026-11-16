@@ -1,4 +1,4 @@
-import { currentUser } from 'api/currentUser';
+// import { currentUser } from 'api/currentUser';
 import { eventEmitter2 } from 'helpers/eventEmitter';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -18,13 +18,14 @@ const ModalAI = ({ data, setVisible, setOpenBuyPremium }) => {
 
   const handleClickStartChat = async e => {
     try {
-      const userData = await currentUser();
-      if (!userData || !userData.subscription) {
-        console.error("Invalid user data or missing 'subscription'");
-        return;
-      }
+      // const userData = await currentUser();
+      const userData = 'none';
+      // if (!userData || !userData.subscription) {
+      //   console.error("Invalid user data or missing 'subscription'");
+      //   return;
+      // }
 
-      if (userData.subscription !== 'none') {
+      if (userData !== 'none') {
         navigate('/chat');
       } else {
         setVisible(false);
